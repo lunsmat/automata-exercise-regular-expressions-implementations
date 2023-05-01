@@ -1,4 +1,4 @@
-﻿using System;
+﻿using Classes.Handlers;
 
 namespace AutomataExercise
 {
@@ -6,7 +6,13 @@ namespace AutomataExercise
     {
         public static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            CommandHandler commandHandler = new CommandHandler();
+
+            QuestionOneHandler questionOneHandler = new QuestionOneHandler();
+
+            commandHandler.register_handler(questionOneHandler);
+
+            commandHandler.handle(args);
         }
     }
 }
