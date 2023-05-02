@@ -9,8 +9,10 @@ namespace AutomataExercise
             CommandHandler commandHandler = new CommandHandler();
 
             QuestionOneHandler questionOneHandler = new QuestionOneHandler();
+            QuestionTwoHandler questionTwoHandler = new QuestionTwoHandler();
 
             commandHandler.register_handler(questionOneHandler);
+            commandHandler.register_handler(questionTwoHandler);
 
             commandHandler.handle(args);
         }
