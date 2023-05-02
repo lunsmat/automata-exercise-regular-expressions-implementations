@@ -1,6 +1,7 @@
 using System.Text.RegularExpressions;
+using Classes.Validators;
 
-namespace Classes.Validators
+namespace Classes.Validators.QuestionOne
 {
     class PhoneValidator: IValidator
     {
