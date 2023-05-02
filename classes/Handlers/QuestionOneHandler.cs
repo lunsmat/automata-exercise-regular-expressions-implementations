@@ -29,14 +29,7 @@ namespace Classes.Handlers
                 altenative = args[1];
             }
                
-            // concat in arg the args from 2 to final
-            IEnumerable<string> args_arr = args.Skip(2);
-            arg += args_arr.ElementAt(0);
-            for (int i = 1; i < args_arr.Count(); i++)
-            {
-                arg += " ";
-                arg += args_arr.ElementAt(i);
-            }
+            arg = string.Join(" ", args.Skip(2));
 
             switch (altenative) {
                 case "nome":
