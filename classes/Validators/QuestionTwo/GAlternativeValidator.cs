@@ -14,6 +14,11 @@ namespace Classes.Validators.QuestionTwo
             this.y = y;
         }
 
+        public string get_regex_pattern()
+        {
+            return $"^(H|M){"{" + this.x + "," + this.y + "}"}((h|m){"{0,2}"}|(h*m*)*mh{"{0,2}"})$";
+        }
+
         /**
          * H representa um homem;
          * M representa uma mulher;
@@ -30,7 +35,7 @@ namespace Classes.Validators.QuestionTwo
         public bool validate(string arg)
         {
             Regex validator = new Regex(
-                $"^(H|M){"{" + this.x + "," + this.y + "}"}((h|m){"{0,2}"}|(h*m*)*mh{"{0,2}"})$",
+                this.get_regex_pattern(),
                 RegexOptions.Compiled
             );
 

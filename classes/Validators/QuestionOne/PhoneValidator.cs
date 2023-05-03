@@ -5,6 +5,11 @@ namespace Classes.Validators.QuestionOne
 {
     class PhoneValidator: IValidator
     {
+        public string get_regex_pattern()
+        {
+            return @"^((\([0-9]{2}\)\s9[0-9]{4}(-)?)|([0-9]{2}\s9[0-9]{4}))[0-9]{4}$";
+        }
+
         /**
          * Telefone:
          * 1. Sentenças devem ter um dos formatos seguintes
@@ -18,7 +23,7 @@ namespace Classes.Validators.QuestionOne
         public bool validate(string arg)
         {
             Regex validator = new Regex(
-                @"^((\([0-9]{2}\)\s9[0-9]{4}(-)?)|([0-9]{2}\s9[0-9]{4}))[0-9]{4}$",
+                this.get_regex_pattern(),
                 RegexOptions.Compiled
             );
 

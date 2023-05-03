@@ -1,11 +1,14 @@
 using System;
 using Classes.Validators;
 using Classes.Validators.QuestionTwo;
+using Classes.Helpers;
 
 namespace Classes.Handlers
 {
     class QuestionTwoHandler: IHandler
     {
+        Logger logger = new Logger();
+
         public string get_command_name()
         {
             return "questao_dois";
@@ -15,7 +18,7 @@ namespace Classes.Handlers
         {
             string altenative = "none";
             IValidator validator;
-            string arg = "";
+            int skipArgs = 2;
 
             // just == it's necessary, but to avoid non expected errors <= it's used
             if (args.Length <= 2)
@@ -29,8 +32,6 @@ namespace Classes.Handlers
                 altenative = args[1];
             }
                
-            arg = string.Join(" ", args.Skip(2));
-
             switch (altenative) {
                 case "a":
                     validator = new AAlternativeValidator();
@@ -73,20 +74,26 @@ namespace Classes.Handlers
                     }
 
                     validator = new GAlternativeValidator(x, y);
-                    arg = string.Join(" ", args.Skip(4));
+                    skipArgs = 4;
                     break;
                 default:
                     Console.WriteLine("Alternativa não disponível, use 'dotnet run ajuda' para ver as alternativas disponíveis");
                     return;
             }
 
-            if (validator.validate(arg))
+            this.logger.info("Expressão regular utilizada para essa solução: " + validator.get_regex_pattern());
+            for (int i = skipArgs; i < args.Length; i++)
             {
-                Console.WriteLine($"O argumento \"{arg}\" é valido");
-            }
-            else
-            {
-                Console.WriteLine($"O argumento \"{arg}\" é invalido");
+                string arg = args[i];
+            
+                if (validator.validate(arg))
+                {
+                    this.logger.success($"\"{arg}\" é valido");
+                }
+                else
+                {
+                    this.logger.error($"\"{arg}\" é invalido");
+                }
             }
         }
 

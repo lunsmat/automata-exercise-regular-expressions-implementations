@@ -5,6 +5,11 @@ namespace Classes.Validators.QuestionOne
 {
     class CPFValidator: IValidator
     {
+        public string get_regex_pattern()
+        {
+            return @"^([0-9]{3}\.){2}[0-9]{3}-[0-9]{2}$";
+        }
+        
         /**
          * CPF:
          * 1. Sentenças devem ter o formato xxx.xxx.xxx-xx, onde x N ∈
@@ -14,7 +19,7 @@ namespace Classes.Validators.QuestionOne
         public bool validate(string arg)
         {
             Regex validator = new Regex(
-                @"^([0-9]{3}\.){2}[0-9]{3}-[0-9]{2}$",
+                this.get_regex_pattern(),
                 RegexOptions.Compiled
             );
 

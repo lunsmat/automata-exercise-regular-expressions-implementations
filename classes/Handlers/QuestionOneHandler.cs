@@ -1,11 +1,14 @@
 using System;
 using Classes.Validators;
 using Classes.Validators.QuestionOne;
+using Classes.Helpers;
 
 namespace Classes.Handlers
 {
     class QuestionOneHandler: IHandler
     {
+        Logger logger = new Logger();
+
         public string get_command_name()
         {
             return "questao_um";
@@ -15,7 +18,6 @@ namespace Classes.Handlers
         {
             string altenative = "none";
             IValidator validator;
-            string arg = "";
 
             // just == it's necessary, but to avoid non expected errors <= it's used
             if (args.Length <= 2)
@@ -28,8 +30,6 @@ namespace Classes.Handlers
             {
                 altenative = args[1];
             }
-               
-            arg = string.Join(" ", args.Skip(2));
 
             switch (altenative) {
                 case "nome":
@@ -58,14 +58,21 @@ namespace Classes.Handlers
                     return;
             }
 
-            if (validator.validate(arg))
+            for (int i = 2; i < args.Length; i++)
             {
-                Console.WriteLine($"O argumento \"{arg}\" é valido");
+                string arg = args[i];
+                
+                if (validator.validate(arg))
+                {
+                    this.logger.success($"O argumento \"{arg}\" é valido para expressão regular: {validator.get_regex_pattern()}");
+                }
+                else
+                {
+                    this.logger.error($"O argumento \"{arg}\" é invalido para expressão regular: {validator.get_regex_pattern()}");
+                }
             }
-            else
-            {
-                Console.WriteLine($"O argumento \"{arg}\" é invalido");
-            }
+
+            
         }
 
         public void usage_example()

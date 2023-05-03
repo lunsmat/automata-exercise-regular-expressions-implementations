@@ -5,6 +5,11 @@ namespace Classes.Validators.QuestionTwo
 {
     class AAlternativeValidator: IValidator
     {
+        public string get_regex_pattern()
+        {
+            return @"^(HM|MH)(((h*m+){2}(h|m)*)|((h|m)*h+(h|m)*))$";
+        }
+        
         /**
          * H representa um homem;
          * M representa uma mulher;
@@ -22,7 +27,7 @@ namespace Classes.Validators.QuestionTwo
         public bool validate(string arg)
         {
             Regex validator = new Regex(
-                @"^(HM|MH)(((h*m+){2}(h|m)*)|((h|m)*h+(h|m)*))$",
+                this.get_regex_pattern(),
                 RegexOptions.Compiled
             );
 

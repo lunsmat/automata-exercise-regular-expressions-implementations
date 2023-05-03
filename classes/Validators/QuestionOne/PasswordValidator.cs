@@ -5,6 +5,11 @@ namespace Classes.Validators.QuestionOne
 {
     class PasswordValidator: IValidator
     {
+        public string get_regex_pattern()
+        {
+            return @"^(?=.*[A-Z])(?=.*[0-9])[a-zA-Z0-9]{8}$";
+        }
+
         /**
          * Senha:
          * 1. Sentenças podem conter símbolos de Σ∪Γ∪N
@@ -18,7 +23,7 @@ namespace Classes.Validators.QuestionOne
         public bool validate(string arg)
         {
             Regex validator = new Regex(
-                @"^(?=.*[A-Z])(?=.*[0-9])[a-zA-Z0-9]{8}$",
+                this.get_regex_pattern(),
                 RegexOptions.Compiled
             );
 

@@ -5,6 +5,11 @@ namespace Classes.Validators.QuestionOne
 {
     class RealNumberValidator: IValidator
     {
+        public string get_regex_pattern()
+        {
+            return @"^([+-]?)([0-9]+)((\.)([0-9]+))?$";
+        }
+
         /**
          * Número real com ou sem sinal:
          * 1. Sentenças devem começar com um dos símbolos do alfabeto {+, -, ε}
@@ -18,7 +23,7 @@ namespace Classes.Validators.QuestionOne
         public bool validate(string arg)
         {
             Regex validator = new Regex(
-                @"^([+-]?)([0-9]+)((\.)([0-9]+))?$",
+                this.get_regex_pattern(),
                 RegexOptions.Compiled
             );
 

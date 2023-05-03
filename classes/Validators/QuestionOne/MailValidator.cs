@@ -5,6 +5,11 @@ namespace Classes.Validators.QuestionOne
 {
     class MailValidator: IValidator
     {
+        public string get_regex_pattern()
+        {
+            return @"^[a-z]+\@[a-z]+(\.com)?\.br$";
+        }
+
         /**
          * E-mail:
          * 1. Sentenças devem conter um, e apenas um, símbolo “@”
@@ -19,7 +24,7 @@ namespace Classes.Validators.QuestionOne
         public bool validate(string arg)
         {
             Regex validator = new Regex(
-                @"^[a-z]+\@[a-z]+(\.com)?\.br$",
+                this.get_regex_pattern(),
                 RegexOptions.Compiled
             );
 

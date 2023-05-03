@@ -5,6 +5,11 @@ namespace Classes.Validators.QuestionOne
 {
     class DateTimeValidator: IValidator
     {
+        public string get_regex_pattern()
+        {
+            return @"^([0-9]{2}\/){2}[0-9]{4}\s([0-9]{2}:){2}[0-9]{2}$";
+        }
+
         /**
          * Data e horário:
          * 1. Sentenças devem ter o formato dd/mm/aaaa hh:mm:ss, onde d, m, a, h, m, s N. ∈
@@ -14,7 +19,7 @@ namespace Classes.Validators.QuestionOne
         public bool validate(string arg)
         {
             Regex validator = new Regex(
-                @"^([0-9]{2}\/){2}[0-9]{4}\s([0-9]{2}:){2}[0-9]{2}$",
+                this.get_regex_pattern(),
                 RegexOptions.Compiled
             );
 

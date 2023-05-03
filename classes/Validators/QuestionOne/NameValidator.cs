@@ -5,6 +5,11 @@ namespace Classes.Validators.QuestionOne
 {
     class NameValidator: IValidator
     {
+        public string get_regex_pattern()
+        {
+            return @"^[A-Z][a-z]+([\s][A-Z][a-z]+){1,2}$";
+        }
+
         /**
          * Nome, nome do meio e sobrenome:
          * 1. Nome, nome do meio e sobrenome devem vir separados por um espaço apenas
@@ -19,7 +24,7 @@ namespace Classes.Validators.QuestionOne
         public bool validate(string arg)
         {
             Regex validator = new Regex(
-                @"^[A-Z][a-z]+([\s][A-Z][a-z]+){1,2}$",
+                this.get_regex_pattern(),
                 RegexOptions.Compiled
             );
 
