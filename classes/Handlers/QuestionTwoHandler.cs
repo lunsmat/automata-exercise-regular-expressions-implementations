@@ -87,13 +87,9 @@ namespace Classes.Handlers
                 string arg = args[i];
             
                 if (validator.validate(arg))
-                {
                     this.logger.success($"\"{arg}\" é valido");
-                }
                 else
-                {
                     this.logger.error($"\"{arg}\" é invalido");
-                }
             }
         }
 

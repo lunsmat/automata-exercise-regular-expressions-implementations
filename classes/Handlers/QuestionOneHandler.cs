@@ -58,18 +58,15 @@ namespace Classes.Handlers
                     return;
             }
 
+            this.logger.info("Expressão regular utilizada para essa solução: " + validator.get_regex_pattern());
             for (int i = 2; i < args.Length; i++)
             {
                 string arg = args[i];
-                
+            
                 if (validator.validate(arg))
-                {
-                    this.logger.success($"O argumento \"{arg}\" é valido para expressão regular: {validator.get_regex_pattern()}");
-                }
+                    this.logger.success($"\"{arg}\" é valido");
                 else
-                {
-                    this.logger.error($"O argumento \"{arg}\" é invalido para expressão regular: {validator.get_regex_pattern()}");
-                }
+                    this.logger.error($"\"{arg}\" é invalido");
             }
 
             
